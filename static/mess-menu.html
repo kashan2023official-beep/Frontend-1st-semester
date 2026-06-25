@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HMS | Mess Menu</title>
+
+<link rel="apple-touch-icon" sizes="180x180" href="..\favicon_io\apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="..\favicon_io\favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="..\favicon_io\favicon-16x16.png">
+<link rel="manifest" href="..\favicon_io\site.webmanifest">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'hms-navy': '#100E34',
+            'hms-gold': '#FFBF18',
+            'hms-blue': '#4F48EC',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+
+    :root {
+      --primary-navy: #100E34;
+      --accent-gold: #FFBF18;
+      --action-blue: #4F48EC;
+      --uniform-gap: 24px; 
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #100E34 0%, #1d1a5f 100%);
+      background-attachment: fixed;
+      margin: 0;
+      padding-top: 120px;
+    }
+
+    .menu-grid-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    /* Padding inside Table Headers */
+    .menu-grid-table th {
+      @apply bg-white/5 text-[0.7rem] font-black uppercase tracking-[0.2em] text-slate-400 p-8 text-center border-b border-white/10 border-r border-white/5;
+    }
+
+    /* Padding inside Table Cells */
+    .menu-grid-table td {
+      @apply py-10 px-8 text-sm text-slate-300 border-b border-r border-white/5 transition-all duration-300;
+    }
+
+    .menu-grid-table th:last-child, 
+    .menu-grid-table td:last-child {
+      border-right: none;
+    }
+
+    .day-header {
+      @apply bg-white/5 font-black text-white text-center border-r border-white/10 uppercase text-xs tracking-widest !important;
+      width: 160px;
+    }
+
+    .menu-grid-table tr:hover td {
+      @apply bg-[#4F48EC]/10 text-white;
+    }
+
+    .meal-content {
+      @apply flex flex-col items-center text-center gap-2;
+    }
+
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #100E34; }
+    ::-webkit-scrollbar-thumb {
+      background: #4F48EC;
+      border-radius: 10px;
+      border: 2px solid #100E34;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="fixed z-[1030] top-[var(--uniform-gap)] left-[var(--uniform-gap)] right-[var(--uniform-gap)]">
+    <div class="bg-[#100E34]/80 backdrop-blur-md rounded-[50px] px-6 py-[14px] flex items-center justify-between shadow-[0_20px_50px_rgba(79,72,236,0.25)] border border-white/10 text-white">
+      <div class="flex items-center">
+        <div class="h-9 w-9 mr-3 rounded-full overflow-hidden flex items-center justify-center bg-[#100E34] border border-[#FFBF18]/40 shadow-[0_0_15px_rgba(255,191,24,0.4)]">
+          <img src="../favicon_io/android-chrome-192x192.png" alt="HMS Logo" class="h-full w-full object-cover mix-blend-screen scale-[1.15]">
+        </div>
+        <span class="font-bold text-xs tracking-widest uppercase text-slate-100">Hostel Management System</span>
+      </div>
+      <span class="bg-[#FFBF18] text-[#100E34] rounded-full px-4 py-2 text-[0.7rem] font-bold uppercase tracking-wider">
+        Mess Menu
+      </span>
+    </div>
+  </nav>
+
+  <main class="container mx-auto px-[var(--uniform-gap)] pb-20">
+    
+    <header class="max-w-5xl mx-auto mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div>
+        <h1 class="text-3xl md:text-5xl font-black text-white tracking-tight">
+          Weekly <span class="text-[#FFBF18]">Dining Schedule.</span>
+        </h1>
+        <p class="text-slate-400 mt-2 text-base">Balanced meal service with standardized hygiene protocols.</p>
+      </div>
+      <div class="bg-white/5 backdrop-blur-md px-8 py-5 rounded-[2.5rem] border border-white/10 shadow-2xl text-right">
+        <span class="block text-[0.65rem] font-black text-[#FFBF18] uppercase tracking-widest mb-1">Monthly Mess Bill</span>
+        <span class="text-2xl font-black text-white tracking-tighter">PKR 10,500</span>
+      </div>
+    </header>
+
+    <section class="max-w-6xl mx-auto">
+      
+      <div class="mb-10 bg-[#FFBF18]/10 border border-[#FFBF18]/20 p-8 rounded-[3rem] flex items-center gap-6 shadow-xl backdrop-blur-sm">
+        <div class="w-12 h-12 bg-[#FFBF18] rounded-2xl flex items-center justify-center text-[#100E34] shrink-0 shadow-lg shadow-[#FFBF18]/20">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <p class="text-slate-200 text-sm md:text-base font-medium">
+          Note: Menu is subject to change based on seasonal availability and market supply.
+        </p>
+      </div>
+
+      <div class="bg-white/5 backdrop-blur-lg rounded-[4rem] border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.4)] overflow-hidden p-6 md:p-12">
+        <div class="overflow-x-auto rounded-[2.5rem] border border-white/5">
+          <table class="menu-grid-table">
+            <thead>
+              <tr>
+                <th class="day-header">Day</th>
+                <th>
+                  <div class="flex flex-col items-center">
+                    <span class="text-[#4F48EC] mb-3 drop-shadow-[0_0_12px_rgba(79,72,236,0.6)]">
+                      <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                    </span>
+                    <span class="text-white text-base">Brunch</span>
+                    <span class="block text-[10px] font-bold opacity-40 lowercase mt-1 tracking-widest">10:00 AM — 12:00 PM</span>
+                  </div>
+                </th>
+                <th>
+                  <div class="flex flex-col items-center">
+                    <span class="text-[#FFBF18] mb-3 drop-shadow-[0_0_12px_rgba(255,191,24,0.6)]">
+                      <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path></svg>
+                    </span>
+                    <span class="text-white text-base">Dinner</span>
+                    <span class="block text-[10px] font-bold opacity-40 lowercase mt-1 tracking-widest">07:30 PM — 09:30 PM</span>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="day-header">Monday</td>
+                <td><div class="meal-content"><span class="font-bold text-white text-lg">Omelette & Paratha</span><span class="text-xs text-slate-500 italic">Mixed Daal & Tea</span></div></td>
+                <td><div class="meal-content"><span class="font-bold text-white text-lg">Chicken Karahi</span><span class="text-xs text-slate-500 italic">Fresh Salad & Roti</span></div></td>
+              </tr>
+              <tr>
+                <td class="day-header">Tuesday</td>
+                <td><div class="meal-content"><span class="font-bold text-white text-lg">Chana Gravy & Nan</span><span class="text-xs text-slate-500 italic">Aloo Bhujia & Tea</span></div></td>
+                <td><div class="meal-content"><span class="font-bold text-white text-lg">Beef Pulao</span><span class="text-xs text-slate-500 italic">Shami Kabab & Raita</span></div></td>
+              </tr>
+              <tr>
+                <td class="day-header">Wednesday</td>
+                <td><div class="meal-content"><span class="font-bold text-white text-lg">French Toast & Milk</span><span class="text-xs text-slate-500 italic">Boiled Eggs & Jam</span></div></td>
+                <td><div class="meal-content"><span class="font-bold text-white text-lg">Chicken Biryani</span><span class="text-xs text-slate-500 italic">Zarda / Cold Drink</span></div></td>
+              </tr>
+              <tr>
+                <td class="day-header">Thursday</td>
+                <td><div class="meal-content"><span class="font-bold text-white text-lg">Mix Veg & Yogurt</span><span class="text-xs text-slate-500 italic">Paratha & Tea</span></div></td>
+                <td><div class="meal-content"><span class="font-bold text-white text-lg">Mutton Qorma</span><span class="text-xs text-slate-500 italic">Roghni Nan & Salad</span></div></td>
+              </tr>
+              <tr>
+                <td class="day-header">Friday</td>
+                <td><div class="meal-content"><span class="font-bold text-white text-lg">Halwa Puri</span><span class="text-xs text-slate-500 italic">Chana, Aloo & Lassi</span></div></td>
+                <td><div class="meal-content"><span class="font-bold text-white text-lg">White Karahi</span><span class="text-xs text-slate-500 italic">Fried Fish & Roti</span></div></td>
+              </tr>
+              <tr>
+                <td class="day-header">Saturday</td>
+                <td><div class="meal-content"><span class="font-bold text-white text-lg">Aloo Paratha</span><span class="text-xs text-slate-500 italic">Yogurt & Tea</span></div></td>
+                <td><div class="meal-content"><span class="font-bold text-white text-lg">BBQ Platter</span><span class="text-xs text-slate-500 italic">Seekh Kabab & Nan</span></div></td>
+              </tr>
+              <tr class="bg-white/5">
+                <td class="day-header text-[#FFBF18] bg-[#FFBF18]/5">Sunday</td>
+                <td><div class="meal-content"><span class="font-black text-[#FFBF18] text-lg">Paya & Nihari</span><span class="text-xs text-[#FFBF18]/60 italic">Kulcha & Special Tea</span></div></td>
+                <td><div class="meal-content"><span class="font-black text-[#FFBF18] text-lg">Chicken Roast</span><span class="text-xs text-[#FFBF18]/60 italic">Vegetable Rice & Kheer</span></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>

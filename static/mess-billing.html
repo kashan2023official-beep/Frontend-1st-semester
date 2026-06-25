@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HMS | Mess Billing</title>
+<link rel="apple-touch-icon" sizes="180x180" href="..\favicon_io\apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="..\favicon_io\favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="..\favicon_io\favicon-16x16.png">
+<link rel="manifest" href="..\favicon_io\site.webmanifest">
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'hms-navy': '#100E34',
+            'hms-gold': '#FFBF18',
+            'hms-blue': '#4F48EC',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+    :root {
+      --primary-navy: #100E34;
+      --accent-gold: #FFBF18;
+      --action-blue: #4F48EC;
+      --uniform-gap: 24px; 
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #100E34 0%, #1d1a5f 100%);
+      background-attachment: fixed;
+      margin: 0;
+      padding-top: 120px;
+    }
+    
+    /* Bill Toggle Logic (No JS) */
+    #bill-search:checked ~ #bill-result {
+      display: block;
+    }
+    #bill-search:checked ~ #empty-state {
+      display: none;
+    }
+
+    /* Glassmorphism Containers */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      @apply border border-white/10 shadow-2xl;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #100E34; }
+    ::-webkit-scrollbar-thumb {
+      background: #4F48EC;
+      border-radius: 10px;
+      border: 2px solid #100E34;
+    }
+    
+    * { scrollbar-width: thin; scrollbar-color: #4F48EC #100E34; }
+  </style>
+</head>
+<body>
+
+  <nav class="fixed z-[1030] top-[var(--uniform-gap)] left-[var(--uniform-gap)] right-[var(--uniform-gap)]">
+    <div class="bg-[#100E34]/80 backdrop-blur-md rounded-[50px] px-6 py-[14px] flex items-center justify-between shadow-[0_20px_50px_rgba(79,72,236,0.25)] border border-white/10 text-white">
+      <div class="flex items-center">
+        <div class="h-9 w-9 mr-3 rounded-full overflow-hidden flex items-center justify-center bg-[#100E34] border border-[#FFBF18]/40 shadow-[0_0_15px_rgba(255,191,24,0.4)]">
+          <img src="../favicon_io/android-chrome-192x192.png" alt="HMS Logo" class="h-full w-full object-cover mix-blend-screen scale-[1.15]">
+        </div>
+        <span class="font-bold text-xs tracking-widest uppercase text-slate-100">Hostel Management System</span>
+      </div>
+      <span class="bg-[#FFBF18] text-[#100E34] rounded-full px-4 py-2 text-[0.7rem] font-bold uppercase tracking-wider">
+        Mess Billing
+      </span>
+    </div>
+  </nav>
+
+  <main class="container mx-auto px-[var(--uniform-gap)] pb-20">
+    
+    <header class="max-w-5xl mx-auto mb-10 text-center md:text-left">
+      <h1 class="text-3xl md:text-5xl font-black text-white tracking-tight">Generate <span class="text-[#FFBF18]">Mess Bill.</span></h1>
+      <p class="text-slate-400 mt-2 text-base md:text-lg">Calculated via verified NFC card attendance records.</p>
+    </header>
+
+    <section class="max-w-5xl mx-auto">
+      
+      <div class="mb-10 bg-[#FFBF18]/10 border border-[#FFBF18]/20 p-6 rounded-[2.5rem] flex items-center gap-6 shadow-2xl backdrop-blur-sm">
+        <div class="w-12 h-12 bg-[#FFBF18] rounded-2xl text-[#100E34] flex items-center justify-center shrink-0 shadow-lg shadow-[#FFBF18]/20">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+        </div>
+        <p class="text-slate-200 text-sm md:text-base">
+          The current rate is <span class="font-black text-[#FFBF18]">Rs. 175 per meal</span>. Bills are finalized on the last day of every month.
+        </p>
+      </div>
+
+      <input type="checkbox" id="bill-search" class="hidden">
+
+      <div class="relative mb-12">
+        <input type="text" placeholder="Enter Roll Number (e.g. 2025-CS-22)" 
+               class="w-full bg-white/5 border-2 border-white/10 rounded-[3rem] px-8 py-6 outline-none focus:border-[#4F48EC] transition-all text-lg text-white placeholder-slate-500 shadow-xl backdrop-blur-md pr-44">
+        <label for="bill-search" class="absolute right-3 top-2.5 bottom-2.5 bg-[#4F48EC] text-white px-8 rounded-[2.5rem] font-black uppercase text-xs tracking-widest hover:bg-[#3b36c4] transition-all cursor-pointer flex items-center justify-center select-none shadow-lg shadow-[#4F48EC]/20 active:scale-95">
+          Get Bill
+        </label>
+      </div>
+
+      <div id="bill-result" class="hidden animate-in fade-in slide-in-from-bottom-6 duration-700">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          <div class="glass-card p-10 rounded-[3.5rem] transition-all duration-500 hover:-translate-y-2">
+            <div class="flex flex-col items-center text-center">
+              <div class="w-24 h-24 bg-[#4F48EC]/20 border border-[#4F48EC]/30 rounded-full mb-6 flex items-center justify-center text-[#4F48EC] font-black text-3xl">MA</div>
+              <h2 class="text-2xl font-black text-white">Muhammad Ali</h2>
+              <span class="text-[#FFBF18] font-mono text-xs font-bold uppercase tracking-widest mt-1">2025-CS-22</span>
+              
+              <div class="mt-10 w-full space-y-4">
+                <div class="flex justify-between text-[10px] font-black uppercase tracking-widest text-slate-400">
+                  <span>Attendance</span>
+                  <span class="text-white">22 Days</span>
+                </div>
+                <div class="w-full bg-white/5 h-3 rounded-full overflow-hidden border border-white/5">
+                  <div class="bg-gradient-to-r from-[#4F48EC] to-[#7c75ff] h-full w-[73%] shadow-[0_0_15px_rgba(79,72,236,0.5)]"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-2 glass-card rounded-[3.5rem] flex flex-col overflow-hidden transition-all duration-500 hover:-translate-y-2">
+            <div class="p-10 border-b border-white/10">
+                <h3 class="font-black text-slate-400 uppercase tracking-widest text-[10px] mb-8">Detailed Breakdown — Dec 2025</h3>
+                
+                <div class="space-y-6">
+                    <div class="flex justify-between items-center">
+                        <span class="text-slate-300">Brunch <small class="text-slate-500 block text-[10px] uppercase font-bold mt-1">22 meals @ Rs. 175</small></span>
+                        <span class="font-black text-white text-lg">Rs. 3,850</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-slate-300">Dinner <small class="text-slate-500 block text-[10px] uppercase font-bold mt-1">20 meals @ Rs. 175</small></span>
+                        <span class="font-black text-white text-lg">Rs. 3,500</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-slate-300">Service Charges <small class="text-slate-500 block text-[10px] uppercase font-bold mt-1">Maintenance & Utilities</small></span>
+                        <span class="font-black text-white text-lg">Rs. 500</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-10 bg-white/5 flex flex-col md:flex-row items-center justify-between gap-6 mt-auto">
+                <div class="text-center md:text-left">
+                    <span class="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Total Amount Due</span>
+                    <span class="text-4xl font-black text-[#FFBF18]">Rs. 7,850</span>
+                </div>
+                <button class="w-full md:w-auto bg-white text-[#100E34] px-10 py-4 rounded-2xl font-black uppercase text-xs tracking-widest hover:bg-[#FFBF18] transition-all shadow-xl active:scale-95">
+                    Print Invoice
+                </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div id="empty-state" class="text-center py-24 bg-white/5 border-2 border-dashed border-white/10 rounded-[4rem]">
+        <div class="w-20 h-20 bg-white/5 rounded-3xl mx-auto mb-6 flex items-center justify-center text-slate-600">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+        </div>
+        <p class="text-slate-400 font-bold uppercase tracking-widest text-xs">Enter a student roll number to calculate bill.</p>
+      </div>
+
+    </section>
+
+  </main>
+</body>
+</html>

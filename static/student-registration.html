@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HMS | Student Registration</title>
+<link rel="apple-touch-icon" sizes="180x180" href="..\favicon_io\apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="..\favicon_io\favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="..\favicon_io\favicon-16x16.png">
+<link rel="manifest" href="..\favicon_io\site.webmanifest">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'hms-navy': '#100E34',
+            'hms-gold': '#FFBF18',
+            'hms-blue': '#4F48EC',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+    :root {
+      --primary-navy: #100E34;
+      --accent-gold: #FFBF18;
+      --action-blue: #4F48EC;
+      --uniform-gap: 24px; 
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #100E34 0%, #1d1a5f 100%);
+      background-attachment: fixed;
+      margin: 0;
+      padding-top: 120px;
+    }
+    .form-input {
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1.25rem;
+      padding: 1rem 1.25rem;
+      outline: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      color: #fff;
+      font-size: 0.875rem;
+      backdrop-filter: blur(5px);
+    }
+    .form-input:focus {
+      border-color: #4F48EC;
+      background-color: rgba(255, 255, 255, 0.07);
+      box-shadow: 0 0 20px rgba(79, 72, 236, 0.2);
+      transform: translateY(-1px);
+    }
+    /* Dark mode dropdown colors */
+    .form-input option {
+      background-color: #100E34;
+      color: white;
+    }
+    label {
+      display: block;
+      text-transform: uppercase;
+      font-size: 0.65rem;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      color: #94a3b8;
+      margin-bottom: 0.75rem;
+      margin-left: 0.5rem;
+      transition: color 0.3s;
+    }
+    .form-input:focus + label, 
+    div:focus-within > label {
+      color: #FFBF18;
+    }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #100E34; }
+    ::-webkit-scrollbar-thumb {
+      background: #4F48EC;
+      border-radius: 10px;
+      border: 2px solid #100E34;
+    }
+    * { scrollbar-width: thin; scrollbar-color: #4F48EC #100E34; }
+  </style>
+</head>
+<body>
+
+  <nav class="fixed z-[1030] top-[var(--uniform-gap)] left-[var(--uniform-gap)] right-[var(--uniform-gap)]">
+    <div class="bg-[#100E34]/80 backdrop-blur-md rounded-[50px] px-6 py-[14px] flex items-center justify-between shadow-[0_20px_50px_rgba(79,72,236,0.25)] border border-white/10 text-white">
+      <div class="flex items-center">
+        <div class="h-9 w-9 mr-3 rounded-full overflow-hidden flex items-center justify-center bg-[#100E34] border border-[#FFBF18]/40 shadow-[0_0_15px_rgba(255,191,24,0.4)]">
+          <img src="../favicon_io/android-chrome-192x192.png" alt="HMS Logo" class="h-full w-full object-cover mix-blend-screen scale-[1.15]">
+        </div>
+        <span class="font-bold text-xs tracking-widest uppercase text-slate-100">Hostel Management System</span>
+      </div>
+
+      <div class="hidden md:flex items-center gap-6 text-[0.7rem] font-black tracking-widest uppercase">
+        <div class="relative dropdown-container">
+          <div id="student-menu" class="hidden absolute top-full left-0 mt-4 w-44 bg-[#100E34] border border-white/10 rounded-xl shadow-2xl overflow-hidden z-50">
+            <a href="#" class="block px-4 py-3 hover:bg-hms-blue/20 transition-colors text-hms-gold">Registration</a>
+            <a href="#" class="block px-4 py-3 hover:bg-hms-blue/20 transition-colors">Records</a>
+          </div>
+        </div>
+      </div>
+
+      <span class="bg-[#FFBF18] text-[#100E34] rounded-full px-4 py-2 text-[0.7rem] font-bold uppercase tracking-wider">
+        Student Registration
+      </span>
+    </div>
+  </nav>
+
+  <main class="container mx-auto px-[var(--uniform-gap)] pb-20">
+    
+    <header class="mb-10">
+      <div class="bg-white/5 backdrop-blur-xl rounded-[3.5rem] p-10 md:p-14 border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.3)] relative overflow-hidden transition-all hover:border-white/20">
+        <div class="relative z-10">
+          <h1 class="text-3xl md:text-5xl font-black text-white mb-3 tracking-tight">
+            New Student <span class="text-hms-gold">Registration.</span>
+          </h1>
+          <p class="text-slate-400 text-lg leading-relaxed max-w-2xl font-medium">
+            Please fill in your official details to apply for hostel accommodation. Ensure all information matches your university records.
+          </p>
+        </div>
+        <div class="absolute -right-20 -top-20 w-80 h-80 bg-hms-blue/10 rounded-full blur-[100px] -z-0"></div>
+      </div>
+    </header>
+
+    <section class="max-w-5xl mx-auto">
+      
+      <div class="mb-10 bg-hms-gold/10 border border-hms-gold/20 p-8 rounded-[2.5rem] flex items-start gap-5 shadow-2xl backdrop-blur-sm transition-transform hover:scale-[1.01]">
+        <div class="p-3 bg-hms-gold rounded-2xl text-hms-navy shrink-0 shadow-lg shadow-hms-gold/20">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </div>
+        <div>
+            <h4 class="text-hms-gold font-black text-xs uppercase tracking-[0.2em]">Note for Applicants</h4>
+            <p class="text-slate-300 text-sm mt-2 leading-relaxed">Once submitted, your application will be reviewed by the Warden/RT. You will receive a notification via email regarding room allotment status within 48 hours.</p>
+        </div>
+      </div>
+
+      <form action="#" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8 bg-white/5 p-10 md:p-16 rounded-[4rem] border border-white/10 shadow-[0_40px_80px_rgba(0,0,0,0.4)] backdrop-blur-2xl">
+        
+        <div class="md:col-span-2 border-b border-white/5 pb-4 mb-2">
+            <h3 class="text-xl font-black text-white tracking-tight">Personal Information</h3>
+        </div>
+
+        <div class="group">
+          <label for="full-name">Full Name</label>
+          <input type="text" id="full-name" class="form-input" placeholder="Muhammad Ali" required>
+        </div>
+
+        <div class="group">
+          <label for="student-id">Student ID / Roll No</label>
+          <input type="text" id="student-id" class="form-input" placeholder="e.g. 2025-CS-22" required>
+        </div>
+
+        <div class="group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" class="form-input" placeholder="2025CS22@student.uet.edu.pk" required>
+        </div>
+
+        <div class="group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" class="form-input" placeholder="+92 300 1234567" required>
+        </div>
+
+        <div class="md:col-span-2 border-b border-white/5 pb-4 mt-6 mb-2">
+            <h3 class="text-xl font-black text-white tracking-tight">Academic Information</h3>
+        </div>
+
+        <div class="group">
+          <label for="department">Department</label>
+          <select id="department" class="form-input cursor-pointer appearance-none">
+            <option>Computer Science</option>
+            <option>Mechanical Engineering</option>
+            <option>Business Administration</option>
+            <option>Architecture</option>
+            <option>Electrical Engineering</option>
+            <option>Data Sciences</option>
+          </select>
+        </div>
+
+        <div class="group">
+          <label for="room-type">Preferred Room Type</label>
+          <select id="room-type" class="form-input cursor-pointer appearance-none">
+            <option>Single Occupancy</option>
+            <option>Double Sharing</option>
+            <option>Dorm Sharing</option>
+          </select>
+        </div>
+
+        <div class="md:col-span-2 group">
+          <label for="address">Permanent Address</label>
+          <textarea id="address" rows="3" class="form-input" placeholder="Enter your full home address..."></textarea>
+        </div>
+
+        <div class="md:col-span-2 flex flex-wrap gap-5 pt-8">
+          <button type="submit" class="bg-hms-blue text-white px-10 py-5 rounded-[1.5rem] font-black uppercase text-xs tracking-[0.2em] hover:bg-blue-600 transition-all active:scale-[0.96] flex items-center gap-3 shadow-xl shadow-hms-blue/20">
+            Complete Registration
+            <svg class="w-5 h-5 text-hms-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </button>
+          <button type="reset" class="bg-white/5 text-slate-400 px-10 py-5 rounded-[1.5rem] font-black uppercase text-xs tracking-[0.2em] hover:bg-white/10 hover:text-white border border-white/5 transition-all active:scale-[0.96]">
+            Clear Form
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    function toggleDropdown(event, menuId) {
+      event.stopPropagation();
+      const menu = document.getElementById(menuId);
+      document.querySelectorAll('.dropdown-container > div').forEach(m => {
+        if (m.id !== menuId) m.classList.add('hidden');
+      });
+      menu.classList.toggle('hidden');
+    }
+
+    window.onclick = function(event) {
+      if (!event.target.closest('.dropdown-container')) {
+        document.querySelectorAll('.dropdown-container > div').forEach(m => {
+          m.classList.add('hidden');
+        });
+      }
+    };
+  </script>
+</body>
+</html>

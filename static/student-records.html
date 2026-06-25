@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HMS | Student Records</title>
+<link rel="apple-touch-icon" sizes="180x180" href="..\favicon_io\apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="..\favicon_io\favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="..\favicon_io\favicon-16x16.png">
+<link rel="manifest" href="..\favicon_io\site.webmanifest">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'hms-navy': '#100E34',
+            'hms-gold': '#FFBF18',
+            'hms-blue': '#4F48EC',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+    :root {
+      --primary-navy: #100E34;
+      --accent-gold: #FFBF18;
+      --action-blue: #4F48EC;
+      --uniform-gap: 24px; 
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #100E34 0%, #1d1a5f 100%);
+      background-attachment: fixed;
+      margin: 0;
+      padding-top: 120px;
+    }
+    #search-trigger:checked ~ #results-container {
+      display: block;
+    }
+    #search-trigger:checked ~ #empty-state {
+      display: none;
+    }
+    .data-label {
+      @apply block text-[0.65rem] font-black uppercase tracking-[0.2em] text-slate-500 mb-2;
+    }
+    .data-value {
+      @apply text-white font-bold text-base;
+    }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #100E34; }
+    ::-webkit-scrollbar-thumb {
+      background: #4F48EC;
+      border-radius: 10px;
+      border: 2px solid #100E34;
+    }
+    * { scrollbar-width: thin; scrollbar-color: #4F48EC #100E34; }
+  </style>
+</head>
+<body>
+
+  <nav class="fixed z-[1030] top-[var(--uniform-gap)] left-[var(--uniform-gap)] right-[var(--uniform-gap)]">
+    <div class="bg-[#100E34]/80 backdrop-blur-md rounded-[50px] px-6 py-[14px] flex items-center justify-between shadow-[0_20px_50px_rgba(79,72,236,0.25)] border border-white/10 text-white">
+      <div class="flex items-center">
+        <div class="h-9 w-9 mr-3 rounded-full overflow-hidden flex items-center justify-center bg-[#100E34] border border-[#FFBF18]/40 shadow-[0_0_15px_rgba(255,191,24,0.4)]">
+          <img src="../favicon_io/android-chrome-192x192.png" alt="HMS Logo" class="h-full w-full object-cover mix-blend-screen scale-[1.15]">
+        </div>
+        <span class="font-bold text-xs tracking-widest uppercase text-slate-100">Hostel Management System</span>
+      </div>
+      <span class="bg-[#FFBF18] text-[#100E34] rounded-full px-4 py-2 text-[0.7rem] font-bold uppercase tracking-wider">
+        Student Records
+      </span>
+    </div>
+  </nav>
+
+  <main class="container mx-auto px-[var(--uniform-gap)] pb-20">
+    
+    <div class="max-w-4xl mx-auto mb-10">
+      <div class="text-center mb-12">
+        <h1 class="text-3xl md:text-5xl font-black text-white tracking-tight">Student <span class="text-hms-gold">Database.</span></h1>
+        <p class="text-slate-400 mt-3 text-lg">Locate student records and allotment status instantly.</p>
+      </div>
+
+      <input type="checkbox" id="search-trigger" class="hidden">
+
+      <div class="relative flex items-center group">
+        <input type="text" placeholder="Enter Roll No (e.g. 2025-CS-22)" 
+               class="w-full bg-white/5 border border-white/10 rounded-[2rem] px-8 py-6 outline-none focus:border-hms-blue focus:ring-8 focus:ring-hms-blue/10 transition-all text-xl text-white shadow-2xl backdrop-blur-md">
+        
+        <label for="search-trigger" class="absolute right-4 bg-hms-blue text-white px-10 py-3.5 rounded-2xl font-black uppercase text-xs tracking-widest hover:bg-blue-600 transition-all cursor-pointer flex items-center gap-2 select-none shadow-lg shadow-hms-blue/20">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          Search
+        </label>
+      </div>
+
+      <div id="results-container" class="hidden mt-16 animate-in fade-in slide-in-from-bottom-8 duration-700">
+        <div class="flex items-center justify-between mb-8 px-4">
+          <h3 class="text-xs font-black text-slate-500 uppercase tracking-[0.3em]">Profile Found</h3>
+          <span class="text-[0.65rem] bg-hms-gold/10 text-hms-gold px-4 py-1.5 rounded-full font-black uppercase tracking-widest border border-hms-gold/20">Active Record</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white/5 p-10 rounded-[3rem] border border-white/10 shadow-2xl text-center backdrop-blur-xl relative overflow-hidden group">
+            <div class="absolute top-0 left-0 w-full h-1.5 bg-hms-gold"></div>
+            <div class="w-24 h-24 bg-white/5 rounded-[2rem] mx-auto mb-6 flex items-center justify-center text-hms-gold border border-white/10 shadow-inner">
+              <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+            </div>
+            <h2 class="text-2xl font-black text-white tracking-tight">Muhammad Ali</h2>
+            <p class="text-hms-gold font-mono text-sm font-black mt-2 tracking-widest">2025-CS-22</p>
+          </div>
+
+          <div class="md:col-span-2 bg-white/5 p-10 rounded-[3rem] border border-white/10 shadow-2xl backdrop-blur-xl grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <div>
+              <span class="data-label">Department</span>
+              <p class="data-value">Computer Science</p>
+            </div>
+            <div>
+              <span class="data-label">Phone</span>
+              <p class="data-value">+92 300 1234567</p>
+            </div>
+            <div>
+              <span class="data-label">Email</span>
+              <p class="data-value text-hms-blue">2025CS22@student.uet.edu.pk</p>
+            </div>
+            <div>
+              <span class="data-label">Room Preference</span>
+              <p class="data-value">Single Occupancy</p>
+            </div>
+            <div class="sm:col-span-2 border-t border-white/5 pt-6">
+              <span class="data-label">Home Address</span>
+              <p class="text-slate-400 text-sm leading-relaxed font-medium">House #123, Street 5, Gulberg III, Lahore, Punjab, Pakistan.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-5 mt-10 justify-end">
+          <button class="px-8 py-4 rounded-[1.25rem] border border-white/10 font-black uppercase text-[0.65rem] tracking-widest text-slate-400 hover:bg-white/5 hover:text-white transition-all">Download PDF</button>
+          <button class="px-10 py-4 rounded-[1.25rem] bg-hms-blue text-white font-black uppercase text-[0.65rem] tracking-widest hover:bg-blue-600 transition-all shadow-xl shadow-hms-blue/20">Allot Room</button>
+        </div>
+      </div>
+
+      <div id="empty-state" class="mt-20 text-center border-2 border-dashed border-white/10 rounded-[4rem] py-24 backdrop-blur-sm bg-white/[0.02]">
+        <div class="bg-white/5 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-6 text-slate-500 border border-white/5 shadow-inner">
+          <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+        </div>
+        <h3 class="text-white font-black text-xl tracking-tight">Warden Search Console</h3>
+        <p class="text-slate-500 text-sm max-w-xs mx-auto mt-3 leading-relaxed">Please enter a valid student roll number and click search to pull data from the server.</p>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>

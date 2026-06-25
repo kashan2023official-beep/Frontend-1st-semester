@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HMS | Room Allotment</title>
+<link rel="apple-touch-icon" sizes="180x180" href="..\favicon_io\apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="..\favicon_io\favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="..\favicon_io\favicon-16x16.png">
+<link rel="manifest" href="..\favicon_io\site.webmanifest">
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'hms-navy': '#100E34',
+            'hms-gold': '#FFBF18',
+            'hms-blue': '#4F48EC',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+    :root {
+      --primary-navy: #100E34;
+      --accent-gold: #FFBF18;
+      --action-blue: #4F48EC;
+      --uniform-gap: 24px; 
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #100E34 0%, #1d1a5f 100%);
+      background-attachment: fixed;
+      margin: 0;
+      padding-top: 120px;
+    }
+    .form-input {
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1.25rem;
+      padding: 1rem 1.25rem;
+      outline: none;
+      transition: all 0.3s;
+      color: #fff;
+      font-size: 0.875rem;
+      backdrop-filter: blur(5px);
+    }
+    .form-input:focus {
+      border-color: #4F48EC;
+      background-color: rgba(255, 255, 255, 0.07);
+      box-shadow: 0 0 20px rgba(79, 72, 236, 0.2);
+    }
+    /* Style for date and select icons in dark mode */
+    .form-input::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+    }
+    label {
+      display: block;
+      text-transform: uppercase;
+      font-size: 0.65rem;
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      color: #94a3b8;
+      margin-bottom: 0.75rem;
+      margin-left: 0.5rem;
+    }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #100E34; }
+    ::-webkit-scrollbar-thumb {
+      background: #4F48EC;
+      border-radius: 10px;
+      border: 2px solid #100E34;
+    }
+    * { scrollbar-width: thin; scrollbar-color: #4F48EC #100E34; }
+  </style>
+</head>
+<body>
+
+  <nav class="fixed z-[1030] top-[var(--uniform-gap)] left-[var(--uniform-gap)] right-[var(--uniform-gap)]">
+    <div class="bg-[#100E34]/80 backdrop-blur-md rounded-[50px] px-6 py-[14px] flex items-center justify-between shadow-[0_20px_50px_rgba(79,72,236,0.25)] border border-white/10 text-white">
+      <div class="flex items-center">
+        <div class="h-9 w-9 mr-3 rounded-full overflow-hidden flex items-center justify-center bg-[#100E34] border border-[#FFBF18]/40 shadow-[0_0_15px_rgba(255,191,24,0.4)]">
+          <img src="../favicon_io/android-chrome-192x192.png" alt="HMS Logo" class="h-full w-full object-cover mix-blend-screen scale-[1.15]">
+        </div>
+        <span class="font-bold text-xs tracking-widest uppercase text-slate-100">Hostel Management System</span>
+      </div>
+      <span class="bg-[#FFBF18] text-[#100E34] rounded-full px-4 py-2 text-[0.7rem] font-bold uppercase tracking-wider">
+        Room Allotment
+      </span>
+    </div>
+  </nav>
+
+  <main class="container mx-auto px-[var(--uniform-gap)] pb-20">
+    
+    <header class="max-w-3xl mx-auto mb-10">
+      <h1 class="text-3xl md:text-5xl font-black text-white tracking-tight">Allocate <span class="text-[#FFBF18]">Room.</span></h1>
+      <p class="text-slate-400 mt-2 text-lg">Assign a specific room and bed to a registered student.</p>
+    </header>
+
+    <section class="max-w-3xl mx-auto">
+      
+      <div class="mb-10 bg-[#FFBF18]/10 border border-[#FFBF18]/20 p-8 rounded-[3rem] flex items-start gap-5 shadow-2xl backdrop-blur-sm">
+        <div class="p-3 bg-[#FFBF18] rounded-2xl text-[#100E34] shrink-0 shadow-lg shadow-[#FFBF18]/20">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </div>
+        <div>
+            <h4 class="text-[#FFBF18] font-black text-xs uppercase tracking-[0.2em]">Important Rule</h4>
+            <p class="text-slate-300 text-sm mt-2 leading-relaxed">Confirming this allotment will instantly update the room's availability and notify the student via their registered university email.</p>
+        </div>
+      </div>
+
+      <form action="#" method="POST" class="bg-white/5 p-8 md:p-14 rounded-[4rem] border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.4)] backdrop-blur-xl space-y-12">
+        
+        <div>
+          <div class="flex items-center gap-4 mb-8">
+            <span class="flex items-center justify-center w-8 h-8 rounded-2xl bg-[#4F48EC] text-white text-xs font-black shadow-lg shadow-[#4F48EC]/30">1</span>
+            <h3 class="text-xl font-black text-white tracking-tight">Student Details</h3>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <label for="student-id">Student Roll Number</label>
+              <input type="text" id="student-id" class="form-input" placeholder="e.g. 2025-CS-22" required>
+            </div>
+            <div>
+              <label for="student-name">Full Name</label>
+              <input type="text" id="student-name" class="form-input" placeholder="Verified Name" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+
+        <div>
+          <div class="flex items-center gap-4 mb-8">
+            <span class="flex items-center justify-center w-8 h-8 rounded-2xl bg-[#4F48EC] text-white text-xs font-black shadow-lg shadow-[#4F48EC]/30">2</span>
+            <h3 class="text-xl font-black text-white tracking-tight">Room Selection</h3>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <label for="room-category">Room Category</label>
+              <select id="room-category" class="form-input cursor-pointer appearance-none">
+                <option class="bg-hms-navy">Single Occupancy</option>
+                <option class="bg-hms-navy">Double Sharing</option>
+                <option class="bg-hms-navy">Dormitory</option>
+              </select>
+            </div>
+            <div>
+              <label for="room-number">Available Room No</label>
+              <select id="room-number" class="form-input cursor-pointer appearance-none">
+                <option class="bg-hms-navy">Select Room...</option>
+                <option class="bg-hms-navy">Room 101 (Single)</option>
+                <option class="bg-hms-navy">Room 105 (Single)</option>
+                <option class="bg-hms-navy">Room 12 (Double)</option>
+                <option class="bg-hms-navy">Room 33 (Dormitory)</option>
+              </select>
+            </div>
+            <div class="md:col-span-2">
+              <label for="allotment-date">Allotment Date</label>
+              <input type="date" id="allotment-date" class="form-input" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-6 flex flex-col sm:flex-row gap-5">
+          <button type="submit" class="bg-[#4F48EC] text-white px-10 py-5 rounded-[1.5rem] font-black uppercase text-xs tracking-[0.2em] hover:bg-[#3b36c4] hover:-translate-y-1 transition-all flex items-center justify-center gap-3 flex-[2] shadow-xl shadow-[#4F48EC]/20 active:scale-95">
+            Confirm Allotment
+            <svg class="w-5 h-5 text-[#FFBF18]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          </button>
+          <button type="reset" class="bg-white/5 text-slate-400 px-10 py-5 rounded-[1.5rem] font-black uppercase text-xs tracking-[0.2em] hover:bg-white/10 hover:text-white transition-all flex-1 border border-white/5 active:scale-95">
+            Cancel
+          </button>
+        </div>
+
+      </form>
+    </section>
+
+  </main>
+</body>
+</html>

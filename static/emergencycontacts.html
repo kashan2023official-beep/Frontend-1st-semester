@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HMS | Emergency Contacts</title>
+<link rel="apple-touch-icon" sizes="180x180" href="..\favicon_io\apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="..\favicon_io\favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="..\favicon_io\favicon-16x16.png">
+<link rel="manifest" href="..\favicon_io\site.webmanifest">
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'hms-navy': '#100E34',
+            'hms-gold': '#FFBF18',
+            'hms-blue': '#4F48EC',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+    :root {
+      --primary-navy: #100E34;
+      --accent-gold: #FFBF18;
+      --action-blue: #4F48EC;
+      --uniform-gap: 24px; 
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #100E34 0%, #1d1a5f 100%);
+      background-attachment: fixed;
+      margin: 0;
+      padding-top: 120px;
+    }
+    
+    .contact-container {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      /* Combined curvy border with glow effect */
+      @apply p-8 rounded-[3rem] border border-white/10 shadow-xl transition-all duration-500 hover:shadow-[0_0_40px_rgba(79,72,236,0.15)] hover:border-[#4F48EC]/40 hover:-translate-y-2;
+    }
+    .status-badge { @apply px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider; }
+    .status-emergency { @apply bg-red-500/10 text-red-400 border border-red-500/20; }
+    .status-available { @apply bg-[#FFBF18]/10 text-[#FFBF18] border border-[#FFBF18]/20; }
+    
+    .call-btn {
+      @apply mt-6 w-full bg-[#4F48EC] text-white font-bold py-4 rounded-2xl hover:bg-[#3b36c4] hover:shadow-[0_10px_20px_rgba(79,72,236,0.3)] transition-all active:scale-[0.98] flex items-center justify-center gap-2 text-sm uppercase tracking-widest;
+    }
+    
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #100E34; }
+    ::-webkit-scrollbar-thumb {
+      background: #4F48EC;
+      border-radius: 10px;
+      border: 2px solid #100E34;
+    }
+    
+    * { scrollbar-width: thin; scrollbar-color: #4F48EC #100E34; }
+  </style>
+</head>
+<body>
+
+  <nav class="fixed z-[1030] top-[var(--uniform-gap)] left-[var(--uniform-gap)] right-[var(--uniform-gap)]">
+    <div class="bg-[#100E34]/80 backdrop-blur-md rounded-[50px] px-[30px] py-[14px] flex items-center justify-between shadow-[0_20px_50px_rgba(79,72,236,0.25)] border border-white/10 text-white">
+      <div class="flex items-center">
+        <div class="h-9 w-9 mr-3 rounded-full overflow-hidden flex items-center justify-center bg-[#100E34] border border-[#FFBF18]/40 shadow-[0_0_15px_rgba(255,191,24,0.4)]">
+          <img src="../favicon_io/android-chrome-192x192.png" alt="HMS Logo" class="h-full w-full object-cover mix-blend-screen scale-[1.15]">
+        </div>
+        <span class="font-bold text-xs tracking-widest uppercase text-slate-100">Hostel Management System</span>
+      </div>
+      <span class="bg-[#FFBF18] text-[#100E34] rounded-full px-4 py-2 text-[0.7rem] font-bold uppercase tracking-wider shadow-[0_0_15px_rgba(255,191,24,0.3)]">
+        Emergency Directory
+      </span>
+    </div>
+  </nav>
+
+  <main class="container mx-auto px-[var(--uniform-gap)] pb-20">
+    
+    <header class="max-w-5xl mx-auto mb-10 text-center md:text-left">
+      <h1 class="text-4xl font-black text-white tracking-tight">Need Urgent <span class="text-[#FFBF18]">Help?</span></h1>
+      <p class="text-slate-400 mt-2 text-lg">Immediate contact numbers for security, medical, and maintenance crises.</p>
+    </header>
+
+    <section class="max-w-5xl mx-auto">
+      
+      <div class="mb-10 bg-red-500/10 border border-red-500/20 p-8 rounded-[3rem] flex flex-col md:flex-row items-center gap-6 shadow-2xl backdrop-blur-sm relative overflow-hidden group">
+        <div class="absolute inset-0 bg-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="w-14 h-14 bg-red-500 rounded-2xl text-white flex items-center justify-center shrink-0 shadow-lg shadow-red-500/30 animate-pulse z-10">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+        </div>
+        <div class="flex-1 text-center md:text-left z-10">
+            <h4 class="text-red-400 font-bold text-sm uppercase tracking-widest">Main Guard Room (24/7)</h4>
+            <p class="text-slate-300 text-sm mt-0.5">Contact for fire, theft, or physical security threats. Available on-site 24 hours.</p>
+        </div>
+        <a href="tel:115" class="bg-red-500 text-white px-8 py-4 rounded-2xl font-black uppercase tracking-widest hover:bg-red-600 transition-all shadow-lg shadow-red-500/20 z-10 active:scale-95">Call 115</a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <div class="contact-container p-8 md:p-10 rounded-[3.5rem] group shadow-2xl relative overflow-hidden backdrop-blur-sm border border-white/10 transition-all duration-500 hover:border-[#4F48EC]/40 hover:-translate-y-1">
+  <div class="absolute top-0 right-0 w-32 h-32 bg-[#4F48EC]/10 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+  
+  <div class="relative z-10">
+    <div class="flex justify-between items-start mb-6">
+      <div class="w-12 h-12 bg-[#4F48EC]/10 rounded-2xl flex items-center justify-center text-[#4F48EC] border border-[#4F48EC]/20 group-hover:bg-[#4F48EC] group-hover:text-white transition-all duration-300">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+      </div>
+      <span class="status-badge status-emergency">Priority</span>
+    </div>
+    <p class="text-[0.65rem] font-bold uppercase tracking-widest text-slate-400 mb-1">Health Services</p>
+    <h3 class="text-xl font-black text-white mb-4">University Clinic</h3>
+    <p class="text-xs text-slate-400 leading-relaxed mb-6">For medical emergencies and ambulance dispatch within campus.</p>
+    <a href="tel:+923001234567" class="call-btn block w-full text-center bg-[#4F48EC] text-white py-4 rounded-[1.5rem] font-bold text-xs uppercase tracking-widest">+92 300 123 4567</a>
+  </div>
+</div>
+
+<div class="contact-container p-8 md:p-10 rounded-[3.5rem] group shadow-2xl relative overflow-hidden backdrop-blur-sm border border-white/10 transition-all duration-500 hover:border-[#FFBF18]/40 hover:-translate-y-1">
+  <div class="absolute top-0 right-0 w-32 h-32 bg-[#FFBF18]/10 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+
+  <div class="relative z-10">
+    <div class="flex justify-between items-start mb-6">
+      <div class="w-12 h-12 bg-[#FFBF18]/10 rounded-2xl flex items-center justify-center text-[#FFBF18] border border-[#FFBF18]/20 group-hover:bg-[#FFBF18] group-hover:text-[#100E34] transition-all duration-300">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+      </div>
+      <span class="status-badge status-available">Active</span>
+    </div>
+    <p class="text-[0.65rem] font-bold uppercase tracking-widest text-slate-400 mb-1">Hostel Management</p>
+    <h3 class="text-xl font-black text-white mb-4">Warden</h3>
+    <p class="text-xs text-slate-400 leading-relaxed mb-6">Administrative emergencies or reporting unauthorized activities.</p>
+    <a href="tel:+923007654321" class="call-btn block w-full text-center bg-[#4F48EC] text-white py-4 rounded-[1.5rem] font-bold text-xs uppercase tracking-widest">+92 300 765 4321</a>
+  </div>
+</div>
+
+<div class="contact-container p-8 md:p-10 rounded-[3.5rem] group shadow-2xl relative overflow-hidden backdrop-blur-sm border border-white/10 transition-all duration-500 hover:border-blue-400/40 hover:-translate-y-1">
+  <div class="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+
+  <div class="relative z-10">
+    <div class="flex justify-between items-start mb-6">
+      <div class="w-12 h-12 bg-blue-500/10 rounded-2xl flex items-center justify-center text-blue-400 border border-blue-500/20 group-hover:bg-blue-400 group-hover:text-white transition-all duration-300">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+      </div>
+      <span class="status-badge status-available">Available</span>
+    </div>
+    <p class="text-[0.65rem] font-bold uppercase tracking-widest text-slate-400 mb-1">Facilities</p>
+    <h3 class="text-xl font-black text-white mb-4">Technical Staff</h3>
+    <p class="text-xs text-slate-400 leading-relaxed mb-6">Critical electrical failures or water main bursts after hours.</p>
+    <a href="tel:+923009998887" class="call-btn block w-full text-center bg-[#4F48EC] text-white py-4 rounded-[1.5rem] font-bold text-xs uppercase tracking-widest">+92 300 999 8887</a>
+  </div>
+</div>
+
+      </div>
+
+      <div class="mt-12 p-8 bg-white/5 border border-white/10 rounded-[3rem] shadow-2xl relative overflow-hidden backdrop-blur-sm">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-[#4F48EC]/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
+        <div class="flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
+          <div>
+            <h3 class="text-white font-black text-xl mb-2">Internal Intercom Directory</h3>
+            <p class="text-slate-400 text-sm">Dial these extensions from the landlines for instant local help.</p>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-4 w-full md:w-auto">
+            <div class="bg-white/5 p-4 rounded-2xl border border-white/10 text-center hover:border-[#FFBF18]/30 transition-colors">
+              <span class="block text-[10px] text-slate-500 font-bold uppercase">Main Gate</span>
+              <span class="text-[#FFBF18] font-black">Ext: 101</span>
+            </div>
+            <div class="bg-white/5 p-4 rounded-2xl border border-white/10 text-center hover:border-[#FFBF18]/30 transition-colors">
+              <span class="block text-[10px] text-slate-500 font-bold uppercase">Mess Manager</span>
+              <span class="text-[#FFBF18] font-black">Ext: 204</span>
+            </div>
+            <div class="bg-white/5 p-4 rounded-2xl border border-white/10 text-center hover:border-[#FFBF18]/30 transition-colors">
+              <span class="block text-[10px] text-slate-500 font-bold uppercase">IT Server Room</span>
+              <span class="text-[#FFBF18] font-black">Ext: 305</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</body>
+</html>
