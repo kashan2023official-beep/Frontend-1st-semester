@@ -3,6 +3,7 @@
 Welcome to the **Hostel Management System (HMS)** — a modern, responsive, and centralized front-end interface designed for managing university hostels efficiently.
 
 This project was built to streamline processes like room allocation, student registration, mess management, and complaint tracking through an intuitive, beautifully designed dark-themed UI.
+For a first semester project, it highlights the basics of concepts of frontend developement
 
 ## ✨ Key Features
 
